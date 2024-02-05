@@ -173,7 +173,7 @@ public class Calculator implements ActionListener{
             textField.setText("");
         }
         //FIXME program is not storing number when adding multiple numbers
-
+        //26.05
 
 
 
