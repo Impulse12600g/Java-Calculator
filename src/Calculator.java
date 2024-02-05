@@ -79,6 +79,8 @@ public class Calculator implements ActionListener{
         frame.add(clrButton);
         //TEST: two buttons are now populating
         //15.59
+        // test commit
+
 
         frame.add(textField);
         frame.setVisible(true);
