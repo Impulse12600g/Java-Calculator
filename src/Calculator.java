@@ -15,7 +15,8 @@ public class Calculator implements ActionListener{
 
     Font myFont = new Font("Ink Free", Font.BOLD, 30);
 
-    double num1 =  0, num2 = 0, num3 = 0;
+    double num1 =  0, num2 = 0, num3 = 0:
+    //double result = 0;
     char operator; //holds a function
 
 
@@ -78,10 +79,31 @@ public class Calculator implements ActionListener{
         frame.add(delButton);
         frame.add(clrButton);
         //TEST: two buttons are now populating
-        //15.59
-        // test commit
 
+        // panel to hold buttons (invisible)
+        panel = new JPanel();
+        panel.setBounds(50, 100, 300, 300);
+        panel.setLayout(new GridLayout(4,4,10,10));
+        //panel.setBackground(Color.gray);temp to test panel constraints
+        panel.add(numberButtons[1]);
+        panel.add(numberButtons[2]);
+        panel.add(numberButtons[3]);
+        panel.add(addButton);//end row 1
+        panel.add(numberButtons[4]);
+        panel.add(numberButtons[5]);
+        panel.add(numberButtons[6]);
+        panel.add(subButton);//end row 2
+        panel.add(numberButtons[7]);
+        panel.add(numberButtons[8]);
+        panel.add(numberButtons[9]);
+        panel.add(mulButton);//end row 3
+        panel.add(decButton);
+        panel.add(numberButtons[0]);
+        panel.add(equButton);
+        panel.add(divButton);
+        //TEST: adding all buttons
 
+        frame.add(panel);
         frame.add(textField);
         frame.setVisible(true);
 
@@ -96,6 +118,64 @@ public class Calculator implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        double result = 0;
+        //loop through to set every button click to a number in the text field
+        for(int i = 0; i<10; i++){
+            if(e.getSource()== numberButtons[i]){
+                textField.setText(textField.getText().concat(String.valueOf(i)));
+            }
+        }
+        if (e.getSource()==decButton){
+            textField.setText(textField.getText().concat("."));
+        }
+        if (e.getSource()==addButton){
+            num1 = Double.parseDouble(textField.getText());
+            operator = '+';
+            textField.setText("");//clr text field
+        }
+        if (e.getSource()==subButton){
+            num1 = Double.parseDouble(textField.getText());
+            operator = '-';
+            textField.setText("");//clr text field
+        }
+        if (e.getSource()==mulButton){
+            num1 = Double.parseDouble(textField.getText());
+            operator = '*';
+            textField.setText("");//clr text field
+        }
+        if (e.getSource()==divButton){
+            num1 = Double.parseDouble(textField.getText());
+            operator = '/';
+            textField.setText("");//clr text field
+        }
+        if(e.getSource()==equButton){
+            num2 = Double.parseDouble(textField.getText());
+
+            switch(operator) {
+                case'+':
+                    result = num1+num2;
+                    break;
+                case'-':
+                    result = num1-num2;
+                    break;
+                case'*':
+                    result = num1*num2;
+                    break;
+                case'/':
+                    result = num1/num2;
+                    break;
+            }
+            textField.setText(String.valueOf(result));
+            num1 = result;//continue if needed
+
+        }
+        if (e.getSource()==clrButton){
+            textField.setText("");
+        }
+        //FIXME program is not storing number when adding multiple numbers
+
+
+
 
     }
 }
